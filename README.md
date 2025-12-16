@@ -44,13 +44,13 @@ touch .env.local
 
 Isi file `.env.local`:
 ```env
-# LinkdAPI (Untuk Scraping Profil)
+# LinkdAPI (Untuk Scraping Profil) -> https://linkdapi.com/
 LINKDAPI_TOKEN=li-xxxxxx
 
-# RapidAPI (Untuk Search Jobs)
+# RapidAPI (Untuk Search Jobs) -> https://rapidapi.com/rockapis-rockapis-default/api/linkedin-job-search-api
 RAPIDAPI_KEY=xxxxx
 
-# Hugging Face (Untuk AI Chat)
+# Hugging Face (Untuk AI Chat) -> https://huggingface.co/settings/tokens
 HUGGINGFACE_TOKEN=hf_xxxxx
 
 # AI Model (Opsional, default: deepseek-ai/DeepSeek-V3.2:novita)
