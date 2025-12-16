@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LinkedIn Profile Analyzer & Job Matcher AI
 
-## Getting Started
+Aplikasi cerdas berbasis Next.js yang mengintegrasikan Scraping LinkedIn, Analisis AI, dan Pencarian Lowongan Kerja secara otomatis.
 
-First, run the development server:
+## 🌟 Fitur Utama
+
+1.  **AI-Driven Job Search (Baru!)** 🧠
+    *   Tidak sekadar mencocokkan teks, aplikasi ini menggunakan AI untuk menganalisis profil pengguna dan menentukan **keyword pencarian kerja terbaik**.
+    *   Hasil rekomendasi pekerjaan jauh lebih relevan dan spesifik sesuai keahlian kandidat.
+
+2.  **Professional Resume Generator** 📄
+    *   Mengubah data profil yang berantakan menjadi Resume Profesional dalam **Bahasa Indonesia**.
+    *   Dibuat otomatis oleh Large Language Model (DeepSeek/OpenAI Compatible).
+
+3.  **LinkedIn Scraper Integration** 🔍
+    *   Hanya dengan satu input URL, aplikasi mengambil data lengkap (Pengalaman, Pendidikan, Skill) menggunakan **LinkdAPI**.
+
+## 🛠️ Teknologi yang Digunakan
+
+*   **Framework**: Next.js 15 (App Router)
+*   **Styling**: Tailwind CSS
+*   **AI Engine**: Hugging Face Inference API (DeepSeek-V3)
+*   **Scraper**: LinkdAPI
+*   **Job Data**: LinkedIn Job Search API (RapidAPI)
+
+## 📦 Cara Install & Menjalankan
+
+### 1. Clone Repository
+
+```bash
+git clone <repository-url>
+cd apify-actor-runner
+npm install
+```
+
+### 2. Setup Environment Variables
+
+Duplikasi file `.env.local` (atau buat baru) dan isi API Key yang diperlukan:
+
+```bash
+# Buat file .env.local di root folder
+touch .env.local
+```
+
+Isi file `.env.local`:
+```env
+# LinkdAPI (Untuk Scraping Profil)
+LINKDAPI_TOKEN=li-xxxxxx
+
+# RapidAPI (Untuk Search Jobs)
+RAPIDAPI_KEY=xxxxx
+
+# Hugging Face (Untuk AI Chat)
+HUGGINGFACE_TOKEN=hf_xxxxx
+
+# AI Model (Opsional, default: deepseek-ai/DeepSeek-V3.2:novita)
+AI_MODEL_ID=deepseek-ai/DeepSeek-V3.2:novita
+```
+
+### 3. Jalankan Aplikasi
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Buka [http://localhost:3000](http://localhost:3000)
+
+## 🐳 Docker Deployment
+
+Kamu juga bisa menjalankan aplikasi ini menggunakan Docker.
+
+### 1. Build Image
+
+```bash
+docker build -t linkedin-profile-analyzer .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run Container
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pastikan flag `--env-file` mengarah ke file `.env.local` kamu yang sudah diisi key.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+docker run -p 3000:3000 --env-file .env.local linkedin-profile-analyzer
+```
 
-## Learn More
+Aplikasi akan berjalan di [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## 🔄 Alur Kerja Aplikasi
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  User memasukkan **URL LinkedIn**.
+2.  **Scraper** mengambil data JSON profil tersebut.
+3.  **AI (LLM)** menganalisis data untuk:
+    *   Menulis Resume dalam Bahasa Indonesia.
+    *   Menentukan `JOB_SEARCH_QUERY` (Kata kunci jabatan paling pas).
+4.  **Job Search API** mencari lowongan menggunakan kata kunci dari AI.
+5.  Hasil Resume dan Lowongan Kerja ditampilkan dalam satu layar.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👤 Author
 
-## Deploy on Vercel
+**Ahmad Maulana Rismadin**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Project ini dilisensikan di bawah lisensi [MIT](LICENSE).
